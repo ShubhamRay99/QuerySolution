@@ -1,0 +1,29 @@
+/* pagination  */
+ .pagination-wrapper {
+	 text-align: center;
+}
+ .pagination {
+	 display: inline-block;
+	 height: 50px;
+	 padding: 0 2px;
+	 border-radius: 85px;
+	 background-color: #fff;
+}
+ .page-numbers {
+	 display: block;
+	 padding: 0 15px;
+	 float: left;
+	 transition: 100ms ease;
+	 color: #10194F;
+	 font-size: 15px;
+	 line-height: 50px;
+}
+ .page-numbers:hover, .page-numbers.current {
+	 background-color: #204166;
+	 color: #fff;
+}
+ .page-numbers.prev:hover, .page-numbers.next:hover {
+	 background-color: #10194F;
+	 color: #fff;
+}
+ 

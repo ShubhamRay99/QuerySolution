@@ -1,0 +1,36 @@
+.jqueryHashtags .highlighter{
+  white-space: pre-wrap;
+	color:transparent;
+	overflow: hidden; 
+	position: absolute;
+	padding-left:7px;
+	padding-top:14px; 
+	font-family: "New Century Schoolbook", serif;
+	font-size:14px;
+}
+
+.jqueryHashtags .theSelector{
+	background-color: transparent; 
+	position: relative; 
+	direction: ltr; 
+	font-size:14px;
+	font-family: "New Century Schoolbook", serif;
+	resize:none !important;
+	-webkit-transition: height 0.2s;
+	border: 1px solid #0827C2;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 6px;
+	padding: 4px 6px;
+	vertical-align:middle;
+	min-height:48px !important;
+}
+
+.jqueryHashtags .hashtag{
+	background: -webkit-linear-gradient(#93DCF5, #93F0F5);
+	border-radius: 2px;
+	box-shadow: 0 0 0 1px #a3bcea;
+	font-size:14px;
+	white-space: pre-wrap;
+	word-break: break-word;
+}

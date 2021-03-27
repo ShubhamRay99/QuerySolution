@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76"
+	th:href="@{/img/apple-icon.png}">
+<link rel="icon" type="image/png" th:href="@{/img/trans.png}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Query Solutions</title>
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
+<!--     Fonts and icons     -->
+<link
+	th:href="@{https://fonts.googleapis.com/css?family=Montserrat:400,700,200}"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	th:href="@{https://use.fontawesome.com/releases/v5.7.1/css/all.css}"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	crossorigin="anonymous">
+<!-- CSS Files -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/now-ui-dashboard.css?v=1.5.0}" rel="stylesheet" />
+<!-- Bootstrap core CSS -->
+<link
+	th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}"
+	rel="stylesheet">
+<!-- jquery -->
+<script th:src="@{https://code.jquery.com/jquery-3.3.1.min.js}"></script>
+<!-- pagination -->
+<link th:href="@{/css/pagination.css}" rel="stylesheet" />
+<!-- search -->
+<link th:href="@{/search/css/main.css}" rel="stylesheet" />
+<script th:src="@{/search/js/searchjs.js}"></script>
+
+</head>
+
+<body class="">
+	<div class="wrapper ">
+		<div class="sidebar" data-color="green">
+			<!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+			<div class="logo">
+				<a href="#" class="simple-text logo-mini">
+					<div class="logo-image-small">
+						<img th:src="@{/img/trans.png}">
+					</div>
+				</a> <a th:href="@{/}" class="simple-text logo-normal"> Query
+					Solutions </a>
+			</div>
+			<div class="sidebar-wrapper" id="sidebar-wrapper">
+				<ul class="nav">
+					<li class="active "><a th:href="@{/}"> <i
+							class="now-ui-icons design_app"></i>
+							<p>Home</p>
+					</a></li>
+					<li><a th:href="@{/course}"> <i
+							class="now-ui-icons education_atom"></i>
+							<p>Courses</p>
+					</a></li>
+					<li><a th:href="@{/publisher/welcome}"> <i
+							class="now-ui-icons users_single-02"></i>
+							<p>User Profile</p>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel" id="main-panel">
+			<!-- Navbar -->
+			<nav
+				class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<div class="navbar-toggle">
+							<button type="button" class="navbar-toggler">
+								<span class="navbar-toggler-bar bar1"></span> <span
+									class="navbar-toggler-bar bar2"></span> <span
+									class="navbar-toggler-bar bar3"></span>
+							</button>
+						</div>
+						<a class="navbar-brand" href="#pablo">Home</a>
+					</div>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navigation" aria-controls="navigation-index"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-bar navbar-kebab"></span> <span
+							class="navbar-toggler-bar navbar-kebab"></span> <span
+							class="navbar-toggler-bar navbar-kebab"></span>
+					</button>
+
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/publisher/welcome}"> <i
+									class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+							</a></li>
+						</ul>
+					</div>
+
+
+				</div>
+			</nav>
+			<!-- End Navbar -->
+			<div class="panel-header panel-header-lg">
+
+				<!-- search bar -->
+				<form th:action="@{/view/searchResult}" method="get"
+					autocomplete="off">
+					<div style="padding-left: 420px; padding-top: 40px;">
+						<div class="search-box">
+							<input type="text" placeholder="Search.." name="search" /> <span></span>
+						</div>
+					</div>
+				</form>
+				<!-- search bar end -->
+
+				<!-- ask a question -->
+				<div class="text-right"
+					style="padding-left: 500px; padding-top: -20px;">
+					<a th:href="@{/static/Question}" class="btn btn-success active">Ask
+						A Question</a>
+				</div>
+
+				<!-- write an article -->
+				<div class="text-right" style="padding-left: 500px">
+					<a th:href="@{/static/Article}" class="btn btn-success active">Write
+						An Article</a>
+				</div>
+
+
+			</div>
+			<div class="content">
+				<div class="row">
+
+					<!-- Questions -->
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								<h5 class="card-category"></h5>
+								<h4 class="card-title">Top Questions</h4>
+							</div>
+							<div class="card-body">
+								<tr th:each="question : ${questions}">
+									<td>
+										<h6 style="padding-top: 10px;">
+											<a class="card-title"
+												th:href="@{/view/Question(id=${question.qId})}"
+												th:text="${question.topic}">Question</a>
+										</h6>
+									</td>
+
+									<td><div class="col-lg-12 "
+											th:text="${question.description}"
+											style="background-color: #ece7e7; width: 100%;">answer</div>
+									</td>
+								</tr>
+							</div>
+							<div class="card-footer">
+								<hr>
+								<!-- pagination start-->
+
+								<div class="pagination-wrapper">
+									<div class="pagination">
+
+										<tr th:each="i : ${#numbers.sequence(0,ques_pageSize-1)}">
+											<a
+												th:classappend="${QuesCurrentPage}==${i}?'page-numbers current':'page-numbers'"
+												th:href="@{/page/{i}/{ArtCurrentPage} ( ArtCurrentPage = ${ArtCurrentPage} , i = ${i} ) }"
+												th:text="${i+1}"></a>
+
+										</tr>
+									</div>
+								</div>
+								<!-- pagination end-->
+							</div>
+						</div>
+					</div>
+					<!-- Question ends -->
+
+
+					<!-- Tutorials -->
+
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Tutorials</h4>
+							</div>
+							<div class="card-body all-icons">
+								<div class="row">
+									<div class="font-icon-list ">
+										<a th:href="@{/static/python}">
+										<div class="font-icon-detail">
+											<img th:src="@{/img/python.png}">
+											<h5>Python</h5>
+										</div>
+										</a>
+									</div>
+									<div class="font-icon-list ">
+										<a th:href="@{/static/java}">
+										<div class="java">
+											<img th:src="@{/img/java.jpg}"
+												style="padding-left: 30px; height: 150px; width: 250px;">
+											<h5>Java</h5>
+										</div>
+										</a>
+									</div>
+									<div class="font-icon-list ">
+										<a th:href="@{/static/sql}">
+										<div class="font-icon-detail">
+											<img th:src="@{/img/sql.png}">
+											<h5>SQL</h5>
+										</div>
+										</a>
+									</div>
+									<div class="font-icon-list ">
+										<a th:href="@{/static/angular}">
+										<div class="java">
+											<img th:src="@{/img/ang.svg}"
+												style="padding-left: 50px; height: 150px; width: 250px;">
+											<h5>Angular</h5>
+										</div>
+										</a>
+									</div>
+									<div class="font-icon-list ">
+										<div class="java" style="padding-top: 80px;">
+											<h1>...</h1>
+										</div>
+									</div>
+								</div>
+								<a th:href="@{/course}">
+									<div class="text-danger text-right">
+										<h6>. . . and more</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Articles -->
+
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-header">
+								<h5 class="card-category"></h5>
+								<h4 class="card-title">Recommended Articles</h4>
+							</div>
+							<div class="card-body">
+								<tr th:each="article : ${articles}">
+									<td>
+										<h6 style="padding-top: 10px;">
+											<a class="card-title"
+												th:href="@{/view/Article(id=${article.articleId})}"
+												th:text="${article.topic}">Article topic</a>
+										</h6>
+									</td>
+
+									<td><div class="col-lg-12 "
+											th:text="${article.content}"
+											style="background-color: #ece7e7; width: 100%;">description</div>
+									</td>
+								</tr>
+							</div>
+							<div class="card-footer">
+								<hr>
+								<!-- pagination start-->
+
+								<div class="pagination-wrapper">
+									<div class="pagination">
+
+										<tr th:each="i : ${#numbers.sequence(0,art_pageSize-1)}">
+											<a 
+												th:classappend="${ArtCurrentPage}==${i}?'page-numbers current':'page-numbers'"
+												th:href="@{/page/{QuesCurrentPage}/{i} ( QuesCurrentPage = ${QuesCurrentPage} , i = ${i} ) }"
+												th:text="${i+1}"></a>
+
+										</tr>
+									</div>
+								</div>
+								<!-- pagination end-->
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<footer class="footer">
+				<div class=" container-fluid ">
+					<nav>
+						<ul>
+							<li><a th:href="@{https://www.creative-tim.com}">
+									Creative Tim </a></li>
+							<li><a th:href="@{/http://presentation.creative-tim.com}">
+									About Us </a></li>
+							<li><a th:href="@{/http://blog.creative-tim.com}"> Blog
+							</a></li>
+						</ul>
+					</nav>
+					<div class="copyright" id="copyright">
+						&copy;
+						<script>
+							document.getElementById('copyright').appendChild(
+									document.createTextNode(new Date()
+											.getFullYear()))
+						</script>
+						, Designed by <a th:href="@{https://www.invisionapp.com}"
+							target="_blank">Invision</a>. Coded by <a
+							th:href="@{https://www.creative-tim.com}" target="_blank">Creative
+							Tim</a>.
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+
+	<script th:src="@{/js/core/popper.min.js}"></script>
+	<script th:src="@{/js/core/bootstrap.min.js}"></script>
+	<script th:src="@{/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+	<!--  Notifications Plugin    -->
+	<script th:src="@{/js/plugins/bootstrap-notify.js}"></script>
+	<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+	<script th:src="@{/js/now-ui-dashboard.min.js?v=1.5.0}"
+		type="text/javascript"></script>
+</body>
+
+</html>
